@@ -110,10 +110,10 @@ Here, we can copy this Tekton Pipeline in the YAML text area. This pipeline will
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: nationalparks-pipeline
+  name: nationalparks-java-pipeline
 spec:
   params:
-    - default: nationalparks
+    - default: nationalparks-java
       name: APP_NAME
       type: string
     - default: 'https://github.com/atarazana/nationalparks-java.git'
@@ -237,10 +237,10 @@ Here, we can copy this Tekton Pipeline in the YAML text area. This pipeline will
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: nationalparks-pipeline
+  name: nationalparks-dotnet-pipeline
 spec:
   params:
-    - default: nationalparks
+    - default: nationalparks-dotnet
       name: APP_NAME
       type: string
     - default: 'https://github.com/atarazana/nationalparks-dotnet.git'
@@ -351,10 +351,10 @@ Here, we can copy this Tekton Pipeline in the YAML text area. This pipeline will
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: nationalparks-pipeline
+  name: nationalparks-js-pipeline
 spec:
   params:
-    - default: nationalparks
+    - default: nationalparks-js
       name: APP_NAME
       type: string
     - default: 'https://github.com/atarazana/nationalparks-js.git'
@@ -457,10 +457,10 @@ Here, we can copy this Tekton Pipeline in the YAML text area. This pipeline will
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  name: nationalparks-pipeline
+  name: nationalparks-py-pipeline
 spec:
   params:
-    - default: nationalparks
+    - default: nationalparks-py
       name: APP_NAME
       type: string
     - default: 'https://github.com/atarazana/nationalparks-py.git'
@@ -566,7 +566,31 @@ Go to the top-right side and click *Create Persistent Volume Claim* button.
 
 image::nationalparks-codechanges-pipeline-pvc-1.png[Create PVC]
 
-Inside *Persistent Volume Claim name* insert *app-source-pvc*.
+Inside *Persistent Volume Claim name* insert:
+
+[tabs, subs="attributes+,+macros"]
+====
+Java::
++
+--
+*app-source-pvc-java*
+--
+.NET::
++
+--
+*app-source-pvc-dotnet*
+--
+Javascript::
++
+--
+*app-source-pvc-js*
+--
+Python::
++
+--
+*app-source-pvc-py*
+--
+====
 
 In *Size* section, insert *1* as we are going to create 1 GiB Persistent Volume for our Pipeline, using RWO Single User access mode.
 

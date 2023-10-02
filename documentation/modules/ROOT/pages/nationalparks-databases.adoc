@@ -212,7 +212,7 @@ mongosh -u admin -p secret --authenticationDatabase admin --eval 'use parksapp' 
 If the command is successful you'll see the output below:
 
 [.console-output]
-[source,bash,subs="+attributes,macros+"]
+[source,console,subs="+attributes,macros+"]
 ----
 { ok: 1 }
 ----
@@ -280,9 +280,9 @@ can verify this by looking at the output of `oc get rs`:
 [source,bash,subs="+macros,+attributes"]
 ----
 NAME                       DESIRED   CURRENT   READY   AGE
-nationalparks-58bd4758fc   0         0         0       4m58s
-nationalparks-7445576cd9   0         0         0       6m42s
-nationalparks-789c6bc4f4   1         1         1       41s
+nationalparks-...-58bd4758fc   0         0         0       4m58s
+nationalparks-...-7445576cd9   0         0         0       6m42s
+nationalparks-...-789c6bc4f4   1         1         1       41s
 parksmap-57df75c46d        1         1         1       8m24s
 parksmap-65c4f8b676        0         0         0       18m
 ----
@@ -299,10 +299,41 @@ stood up a "new" instance.
 Now that we have a database deployed, we can again visit the `nationalparks` web
 service to query for data:
 
+[tabs, subs="attributes+,+macros"]
+====
+Java::
++
+--
 [source,role="copypaste",subs="+attributes"]
 ----
-https://nationalparks-%PROJECT%.%CLUSTER_SUBDOMAIN%/ws/data/all
+https://nationalparks-java-%PROJECT%.%CLUSTER_SUBDOMAIN%/ws/data/all
 ----
+--
+.NET::
++
+--
+[source,role="copypaste",subs="+attributes"]
+----
+https://nationalparks-dotnet-%PROJECT%.%CLUSTER_SUBDOMAIN%/ws/data/all
+----
+--
+Javascript::
++
+--
+[source,role="copypaste",subs="+attributes"]
+----
+https://nationalparks-js-%PROJECT%.%CLUSTER_SUBDOMAIN%/ws/data/all
+----
+--
+Python::
++
+--
+[source,role="copypaste",subs="+attributes"]
+----
+https://nationalparks-py-%PROJECT%.%CLUSTER_SUBDOMAIN%/ws/data/all
+----
+--
+====
 
 And the result?
 
@@ -318,10 +349,41 @@ application and then deployed the database. Nothing actually loaded anything
 
 The application provides an endpoint to do just that:
 
+[tabs, subs="attributes+,+macros"]
+====
+Java::
++
+--
 [source,role="copypaste",subs="+attributes"]
 ----
-https://nationalparks-%PROJECT%.%CLUSTER_SUBDOMAIN%/ws/data/load
+https://nationalparks-java-%PROJECT%.%CLUSTER_SUBDOMAIN%/ws/data/load
 ----
+--
+.NET::
++
+--
+[source,role="copypaste",subs="+attributes"]
+----
+https://nationalparks-dotnet-%PROJECT%.%CLUSTER_SUBDOMAIN%/ws/data/load
+----
+--
+Javascript::
++
+--
+[source,role="copypaste",subs="+attributes"]
+----
+https://nationalparks-js-%PROJECT%.%CLUSTER_SUBDOMAIN%/ws/data/load
+----
+--
+Python::
++
+--
+[source,role="copypaste",subs="+attributes"]
+----
+https://nationalparks-py-%PROJECT%.%CLUSTER_SUBDOMAIN%/ws/data/load
+----
+--
+====
 
 And the result?
 
@@ -392,7 +454,7 @@ labels. `describe` the `nationalparks` service:
 [.console-input]
 [source,bash,subs="+attributes,macros+"]
 ----
-oc describe route nationalparks
+oc describe route nationalparks-[java/dotnet/js/py]
 ----
 
 [.console-output]
@@ -428,7 +490,7 @@ You see that it already has some labels. Now, use `oc label`:
 [.console-input]
 [source,bash,subs="+attributes,macros+"]
 ----
-oc label route nationalparks type=parksmap-backend
+oc label route nationalparks-[java/dotnet/js/py] type=parksmap-backend
 ----
 
 You will see something like:
