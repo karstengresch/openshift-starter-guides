@@ -114,14 +114,21 @@ OpenShift will now:
 
 All with one command!
 
-When the build is complete, visit the parks map. Does it work? Think about how
-this could be used in your environment.  For example, a template could define a
-large set of resources that make up a "reference application", complete with
-several app servers, databases, and more.  You could deploy the entire set of
-resources with one command, and then hack on them to develop new features,
-microservices, fix bugs, and more.
+When the build is complete, visit the parks map. Does it work? Try to uncheck all POIs (Points Of Interest) except for MLBParks.
+No POIs showing up but no error in the log? Maybe data is not loaded yet! Try this:
 
-TIP: You'll notice apps are already inside `workshop` application group and they have a nice EAP and MongoDB icon. This is thanks to the label `app.kubernetes.io/part-of` and `app.kubernetes.io/name` that the template already setup for both DeploymentConfigs 
+[source,text,role="copypaste",subs="+attributes"]
+----
+http://mlbparks-%PROJECT%.%CLUSTER_SUBDOMAIN%/ws/data/load
+----
+
+Now go back to the visualizer application and try again.
+
+TIP: You may need to refresh with kbd:[Ctrl+F5] or kbd:[Cmd+R]
+
+Think about how this could be used in your environment.  For example, a template could define a large set of resources that make up a "reference application", complete with several app servers, databases, and more.  You could deploy the entire set of resources with one command, and then hack on them to develop new features, microservices, fix bugs, and more.
+
+TIP: You'll notice apps are already inside `workshop` application group and they have a nice EAP and MongoDB icon. This is thanks to the label `app.kubernetes.io/part-of` and `app.kubernetes.io/name` that the template already setup for both Deployment (MongoDB) and DeploymentConfig (JBoss EAP).
 
 image::mlbparks-templates-complete-overview.png[Complete overview]
 
